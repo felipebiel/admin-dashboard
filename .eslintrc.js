@@ -3,7 +3,7 @@ module.exports = {
     env: {
         node: true,
     },
-    extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
+    extends: ['plugin:vue/essential', 'eslint:recommended'],
     parserOptions: {
         parser: 'babel-eslint',
     },
@@ -17,7 +17,6 @@ module.exports = {
         'object-property-newline': 'off',
         'no-mixed-spaces-and-tabs': 'off',
         'require-jsdoc': 'off',
-        'new-cap': 'off', // Regra desabilitada pelo uso do materialize com jquery, retirar após a remoção dessa dependencia
         'no-invalid-this': 'off',
         'brace-style': 'off',
         camelcase: 'warn',
