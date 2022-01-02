@@ -1,6 +1,6 @@
 <template>
     <div class="toolbar">
-        <div class="toggle"><span class="material-icons"> menu </span></div>
+        <div class="toggle"><span class="material-icons" @click="toggleMenu"> menu </span></div>
         <div class="search">
             <label>
                 <input type="text" placeholder="Buscar ..." />
@@ -14,9 +14,14 @@
 </template>
 
 <script>
+import menuStore from '@/composibles/menu';
 export default {
     setup() {
-        return {};
+        const toggleMenu = () => {
+            menuStore.toogleFunction();
+        };
+
+        return { toggleMenu };
     },
 };
 </script>

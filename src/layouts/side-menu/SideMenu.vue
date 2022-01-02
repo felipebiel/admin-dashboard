@@ -1,10 +1,10 @@
 <template>
-    <div class="navigation">
+    <div class="navigation" :class="activeClass">
         <ul>
             <li>
                 <router-link :to="{ name: 'Home' }">
                     <span class="icon"><span class="material-icons"> business </span></span>
-                    <span class="title">Logo Empresa</span>
+                    <span class="title">Empresa</span>
                 </router-link>
             </li>
             <li v-for="(link, index) in links" :key="index" :class="{ active: $route.name === link.routerName }">
@@ -37,12 +37,17 @@
 import { computed } from '@vue/reactivity';
 // CONSTANTE COM OS INTENS DO MENU
 import { LINKS_MENU } from '@/services/links-menu.js';
+import menuStore from '@/composibles/menu';
 export default {
     setup() {
         const links = computed(() => {
             return LINKS_MENU;
         });
-        return { links };
+        const activeClass = computed(() => {
+            return menuStore.state.toggle ? 'active' : '';
+        });
+
+        return { links, activeClass };
     },
 };
 </script>
@@ -57,6 +62,9 @@ export default {
     border-left: 10px solid $primary-color;
     transition: 0.5s;
     overflow: hidden;
+    &.active {
+        width: 80px;
+    }
     ul {
         position: absolute;
         top: 0;
@@ -76,6 +84,10 @@ export default {
                 margin-bottom: 40px;
                 // tira o evento de hover
                 pointer-events: none;
+
+                .title {
+                    font-size: 2rem;
+                }
             }
             a {
                 position: relative;

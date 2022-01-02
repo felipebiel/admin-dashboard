@@ -7,7 +7,7 @@
         <!-- <div class="main">
             <router-view></router-view>
         </div> -->
-        <div class="main">
+        <div class="main" :class="activeClass">
             <toolbar-component></toolbar-component>
         </div>
     </div>
@@ -16,6 +16,8 @@
 <script>
 import SideMenu from './side-menu/SideMenu.vue';
 import ToolbarComponent from './toolbar/ToolbarComponent.vue';
+import menuStore from '@/composibles/menu';
+import { computed } from '@vue/reactivity';
 export default {
     name: 'LayoutBase',
     components: {
@@ -23,7 +25,10 @@ export default {
         ToolbarComponent,
     },
     setup() {
-        return {};
+        const activeClass = computed(() => {
+            return menuStore.state.toggle ? 'active' : '';
+        });
+        return { activeClass };
     },
 };
 </script>
@@ -41,5 +46,9 @@ export default {
     left: 300px;
     min-height: 100vh;
     transition: 0.5s;
+    &.active {
+        left: 80px;
+        width: calc(100% - 80px);
+    }
 }
 </style>
