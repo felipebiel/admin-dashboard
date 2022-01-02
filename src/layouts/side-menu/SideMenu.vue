@@ -83,7 +83,7 @@ export default {
                 width: 100%;
                 display: flex;
                 text-decoration: none;
-                color: $white;
+                color: $text-primary;
                 .icon {
                     position: relative;
                     display: block;
