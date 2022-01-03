@@ -9,6 +9,7 @@
         </div> -->
         <div class="main" :class="activeClass">
             <toolbar-component></toolbar-component>
+            <router-view></router-view>
         </div>
     </div>
 </template>

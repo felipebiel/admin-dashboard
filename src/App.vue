@@ -1,14 +1,10 @@
 <template>
-    <LayoutBase></LayoutBase>
+    <router-view></router-view>
 </template>
 
 <script>
-import LayoutBase from '@/layouts/LayoutBase';
 export default {
     name: 'App',
-    components: {
-        LayoutBase,
-    },
 };
 </script>
 
