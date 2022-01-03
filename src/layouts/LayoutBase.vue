@@ -3,13 +3,11 @@
         <div class="container">
             <side-menu></side-menu>
         </div>
-
-        <!-- <div class="main">
-            <router-view></router-view>
-        </div> -->
         <div class="main" :class="activeClass">
             <toolbar-component></toolbar-component>
-            <router-view></router-view>
+            <div class="content-box">
+                <router-view></router-view>
+            </div>
         </div>
     </div>
 </template>
@@ -50,6 +48,9 @@ export default {
     &.active {
         left: 80px;
         width: calc(100% - 80px);
+    }
+    .content-box {
+        padding: 20px;
     }
 }
 </style>

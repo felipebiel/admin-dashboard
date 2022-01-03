@@ -1,5 +1,10 @@
 <template>
-    <div></div>
+    <div class="card-box">
+        <fb-card-info numbers="2,352" title="Visualizações" icon="visibility"></fb-card-info>
+        <fb-card-info numbers="80" title="Vendas" icon="shopping_cart"></fb-card-info>
+        <fb-card-info numbers="1,381" title="Comentários" icon="question_answer"></fb-card-info>
+        <fb-card-info numbers="$548,36" title="Renda" icon="paid"></fb-card-info>
+    </div>
 </template>
 
 <script>
@@ -11,4 +16,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-box {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
 </style>
