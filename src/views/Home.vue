@@ -14,7 +14,13 @@
                         <template v-slot:right> <fb-button @click="openModal">Ver todas</fb-button></template>
                     </fb-title-bar>
                     <div class="body">
-                        <fb-table :items="tableData" :headers="headersTable" :loading="false"> </fb-table>
+                        <fb-table :items="tableData" :headers="headersTable" :loading="false">
+                            <template v-slot:status="{ item }">
+                                <fb-badge :variant="dictStatus[item.status]" size="small" rounded>{{
+                                    item.status
+                                }}</fb-badge>
+                            </template>
+                        </fb-table>
                     </div>
                     <fb-modal
                         height="auto"
@@ -54,6 +60,12 @@ export default {
                 { name: 'Jonas', price: '98,25', payment: 'PIX', status: 'Estornado' },
                 { name: 'Vilmar', price: '5531,96', payment: 'Vale', status: 'Pendente' },
             ],
+            dictStatus: {
+                Pendente: 'fb-orange',
+                Pago: 'fb-green',
+                Cancelado: 'fb-red',
+                Estornado: 'fb-black',
+            },
             showModal: false,
         });
         const openModal = () => {
