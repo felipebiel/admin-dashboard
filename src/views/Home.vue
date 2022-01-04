@@ -11,11 +11,23 @@
                 <fb-card>
                     <fb-title-bar>
                         <template v-slot:left>Compras Recentes</template>
-                        <template v-slot:right> <fb-button>Ver todas</fb-button></template>
+                        <template v-slot:right> <fb-button @click="openModal">Ver todas</fb-button></template>
                     </fb-title-bar>
                     <div class="body">
                         <fb-table :items="tableData" :headers="headersTable" :loading="false"> </fb-table>
                     </div>
+                    <fb-modal
+                        height="auto"
+                        width="650px"
+                        :show="showModal"
+                        @close="showModal = false"
+                        footerPositionItens="right"
+                    >
+                        <template v-slot:header>Todos os registros</template>
+                        <template v-slot:body>
+                            <fb-table :items="tableData" :headers="headersTable" :loading="false"></fb-table>
+                        </template>
+                    </fb-modal>
                 </fb-card>
             </div>
             <div class="col-span-4"></div>
@@ -42,8 +54,12 @@ export default {
                 { name: 'Jonas', price: '98,25', payment: 'PIX', status: 'Estornado' },
                 { name: 'Vilmar', price: '5531,96', payment: 'Vale', status: 'Pendente' },
             ],
+            showModal: false,
         });
-        return { ...toRefs(self) };
+        const openModal = () => {
+            self.showModal = true;
+        };
+        return { ...toRefs(self), openModal };
     },
 };
 </script>
