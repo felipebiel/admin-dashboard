@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div>
-            <div class="numbers">{{ numbers }}</div>
+            <div class="numbers" v-tippy="numbersTippy">{{ truncateString(numbers, truncate) }}</div>
             <div class="card-name">{{ title }}</div>
         </div>
         <div class="icon-bx">
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { truncateString } from '@/utils';
+import { computed } from '@vue/reactivity';
 export default {
     props: {
         numbers: {
@@ -25,9 +27,19 @@ export default {
             type: String,
             default: '',
         },
+        truncateSize: {
+            type: Number,
+            default: 0,
+        },
     },
-    setup() {
-        return {};
+    setup(props) {
+        const truncate = computed(() => {
+            return props.truncateSize > 0 ? props.truncateSize : props.numbers.length;
+        });
+        const numbersTippy = computed(() => {
+            return props.truncateSize > 0 ? props.numbers : false;
+        });
+        return { truncateString, truncate, numbersTippy };
     },
 };
 </script>
