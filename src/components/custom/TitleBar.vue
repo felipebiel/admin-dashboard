@@ -17,11 +17,11 @@ export default {
         },
         columnLeftSize: {
             type: String,
-            default: 'col-span-3',
+            default: 'col-span-9',
         },
         columnRightSize: {
             type: String,
-            default: 'col-span-9',
+            default: 'col-span-3',
         },
     },
 };
