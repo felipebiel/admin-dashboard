@@ -36,13 +36,57 @@
                     </fb-modal>
                 </fb-card>
             </div>
-            <div class="col-span-4"></div>
+            <div class="col-span-4 alertas">
+                <fb-alert isClosable variant="fb-green" border>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
+                    Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue.
+                </fb-alert>
+
+                <fb-alert variant="fb-red" :show="alertShow">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
+                    Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue.
+                </fb-alert>
+
+                <fb-alert
+                    variant="fb-orange"
+                    :hasIcon="false"
+                    :show="alertShow"
+                    animateEnter="animate__bounceIn"
+                    animateLeave="animate__bounceOut"
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
+                    Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue.
+                </fb-alert>
+
+                <fb-alert
+                    variant="fb-info"
+                    icon="help"
+                    :show="alertShow"
+                    animateEnter="animate__backInDown"
+                    animateLeave="animate__backOutDown"
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
+                    Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue.
+                </fb-alert>
+
+                <fb-alert
+                    variant="fb-black"
+                    icon="gpp_maybe"
+                    :show="alertShow"
+                    animateEnter="animate__fadeInDown"
+                    animateLeave="animate__fadeOutDown"
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
+                    Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue.
+                </fb-alert>
+                <fb-button @click="alertShow = !alertShow" block>{{ textButton }}</fb-button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import { reactive, toRefs } from '@vue/reactivity';
+import { computed, reactive, toRefs } from '@vue/reactivity';
 export default {
     setup() {
         const self = reactive({
@@ -67,11 +111,15 @@ export default {
                 Estornado: 'fb-black',
             },
             showModal: false,
+            alertShow: true,
         });
         const openModal = () => {
             self.showModal = true;
         };
-        return { ...toRefs(self), openModal };
+        const textButton = computed(() => {
+            return self.alertShow ? 'Ocultar Alertas' : 'Mostrar Alertas';
+        });
+        return { ...toRefs(self), openModal, textButton };
     },
 };
 </script>
@@ -93,6 +141,12 @@ export default {
         grid-gap: 30px;
         .body {
             padding-top: 20px;
+        }
+        .alertas {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
     }
 }
