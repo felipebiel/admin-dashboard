@@ -79,7 +79,39 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
                     Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue.
                 </fb-alert>
-                <fb-button @click="alertShow = !alertShow" block>{{ textButton }}</fb-button>
+                <fb-button @click="alertShow = !alertShow" block rounded>{{ textButton }}</fb-button>
+            </div>
+            <div class="col-span-12">
+                <fb-collapse title="Informações de Perfil" initOpen card>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel vehicula.
+                    Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue. Praesent pulvinar aliquam
+                    magna id tempus.
+                    <fb-collapse
+                        title="Texto legal"
+                        iconClose="arrow_drop_down"
+                        :initOpen="false"
+                        animateEnter="animate__fadeInDown"
+                        animateLeave="animate__fadeOutUp"
+                    >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel
+                        vehicula. Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue. Praesent
+                        pulvinar aliquam magna id tempus.
+                    </fb-collapse>
+
+                    <fb-collapse
+                        class="pt-1"
+                        title="Coisas legais"
+                        iconClose="arrow_drop_down"
+                        :initOpen="true"
+                        :showCloseButton="false"
+                        animateEnter="animate__fadeInDown"
+                        animateLeave="animate__fadeOutUp"
+                    >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eleifend nisl vel
+                        vehicula. Curabitur turpis enim, eleifend nec ullamcorper nec, pretium eget augue. Praesent
+                        pulvinar aliquam magna id tempus.
+                    </fb-collapse>
+                </fb-collapse>
             </div>
         </div>
     </div>
@@ -127,18 +159,40 @@ export default {
 <style lang="scss" scoped>
 .home {
     padding: 20px;
+    .pt-1 {
+        padding-top: 20px;
+    }
     .card-box {
         position: relative;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 30px;
+        @media screen and (max-width: 1400px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media screen and (max-width: 900px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
     .details {
         padding-top: 20px;
         position: relative;
         width: 100%;
         grid-gap: 30px;
+        @media screen and (max-width: 1400px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        .col-span-8 {
+            @media screen and (max-width: 1400px) {
+                grid-column: span 12 / span 12;
+            }
+        }
+        .col-span-4 {
+            @media screen and (max-width: 1400px) {
+                grid-column: span 12 / span 12;
+            }
+        }
         .body {
             padding-top: 20px;
         }
@@ -147,6 +201,9 @@ export default {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            @media screen and (max-width: 1400px) {
+                height: 500px;
+            }
         }
     }
 }

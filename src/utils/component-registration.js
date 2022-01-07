@@ -7,6 +7,7 @@ import TableComponent from '@/components/custom/TableComponent';
 import ModalComponent from '@/components/custom/ModalComponent';
 import BadgeComponent from '@/components/custom/BadgeComponent';
 import AlertComponent from '@/components/custom/AlertComponent';
+import CollapseComponent from '@/components/custom/CollapseComponent';
 
 export default (app) => {
     app.component('fb-card-info', CardInfo);
@@ -17,4 +18,5 @@ export default (app) => {
     app.component('fb-modal', ModalComponent);
     app.component('fb-badge', BadgeComponent);
     app.component('fb-alert', AlertComponent);
+    app.component('fb-collapse', CollapseComponent);
 };
