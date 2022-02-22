@@ -62,8 +62,19 @@ export default {
     border-left: 10px solid $primary-color;
     transition: 0.5s;
     overflow: hidden;
+    @media screen and (max-width: 991px) {
+        left: -300px;
+    }
     &.active {
         width: 80px;
+        @media screen and (max-width: 991px) {
+            width: 300px;
+            left: 0px;
+        }
+        @media screen and (max-width: 767px) {
+            width: 100%;
+            z-index: 1;
+        }
     }
     ul {
         position: absolute;

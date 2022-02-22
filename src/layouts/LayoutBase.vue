@@ -45,9 +45,20 @@ export default {
     left: 300px;
     min-height: 100vh;
     transition: 0.5s;
+    @media screen and (max-width: 991px) {
+        width: 100%;
+        left: 0;
+    }
     &.active {
         left: 80px;
         width: calc(100% - 80px);
+        @media screen and (max-width: 991px) {
+            left: 300px;
+        }
+        @media screen and (max-width: 767px) {
+            left: 85%;
+            color: $white;
+        }
     }
     .content-box {
         padding: 20px;

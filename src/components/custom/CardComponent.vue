@@ -17,5 +17,8 @@ export default {};
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
     background-color: $white;
+    @media screen and (max-width: 767px) {
+        padding: 20px;
+    }
 }
 </style>

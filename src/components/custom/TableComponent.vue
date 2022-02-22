@@ -1,54 +1,56 @@
 <template>
-    <table id="fb-table">
-        <thead>
-            <tr class="tr-head">
-                <th
-                    class="title"
-                    :key="index"
-                    v-for="(header, index) in headers"
-                    :style="{ width: header.columnSize ? header.columnSize : 'auto' }"
-                >
-                    {{ header.label }}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <template v-if="rows.length > 0">
-                <tr
-                    :style="isSubtitleTable ? `border-left: 5px solid ${row.colorTable};` : ''"
-                    :key="index"
-                    v-for="(row, index) in rows"
-                    @click="$emit('selectedRow', row)"
-                >
-                    <td v-for="(col, index) in columns" :key="index" class="table-value">
-                        <slot v-if="!!slots[col]" v-bind:item="row" :name="col"></slot>
-                        <template v-else>{{ row[col] }}</template>
-                    </td>
+    <div class="table-responsive">
+        <table id="fb-table">
+            <thead>
+                <tr class="tr-head">
+                    <th
+                        class="title"
+                        :key="index"
+                        v-for="(header, index) in headers"
+                        :style="{ width: header.columnSize ? header.columnSize : 'auto' }"
+                    >
+                        {{ header.label }}
+                    </th>
                 </tr>
-            </template>
-            <template v-else>
-                <tr>
-                    <td :colspan="columns.length" class="no-register">
-                        <slot name="no-register">Nenhum registro foi encontrado</slot>
-                    </td>
-                </tr>
-            </template>
+            </thead>
+            <tbody>
+                <template v-if="rows.length > 0">
+                    <tr
+                        :style="isSubtitleTable ? `border-left: 5px solid ${row.colorTable};` : ''"
+                        :key="index"
+                        v-for="(row, index) in rows"
+                        @click="$emit('selectedRow', row)"
+                    >
+                        <td v-for="(col, index) in columns" :key="index" class="table-value">
+                            <slot v-if="!!slots[col]" v-bind:item="row" :name="col"></slot>
+                            <template v-else>{{ row[col] }}</template>
+                        </td>
+                    </tr>
+                </template>
+                <template v-else>
+                    <tr>
+                        <td :colspan="columns.length" class="no-register">
+                            <slot name="no-register">Nenhum registro foi encontrado</slot>
+                        </td>
+                    </tr>
+                </template>
 
-            <template v-if="showLoadMore && !loading">
-                <tr>
-                    <td :colspan="columns.length" class="load-more" @click="$emit('loadMore')">Ver Mais</td>
-                </tr>
-            </template>
+                <template v-if="showLoadMore && !loading">
+                    <tr>
+                        <td :colspan="columns.length" class="load-more" @click="$emit('loadMore')">Ver Mais</td>
+                    </tr>
+                </template>
 
-            <template v-if="loading">
-                <tr>
-                    <td :colspan="columns.length" class="loading-bottom">
-                        <div class="lds-dual-ring"></div>
-                    </td>
-                </tr>
-            </template>
-        </tbody>
-    </table>
+                <template v-if="loading">
+                    <tr>
+                        <td :colspan="columns.length" class="loading-bottom">
+                            <div class="lds-dual-ring"></div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
@@ -175,6 +177,12 @@ table {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+.table-responsive {
+    @media screen and (max-width: 767px) {
+        overflow-x: scroll;
     }
 }
 </style>

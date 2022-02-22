@@ -44,6 +44,7 @@ export default {
         align-items: center;
         font-size: 2.5em;
         cursor: pointer;
+        z-index: 1001;
     }
     .search {
         position: relative;

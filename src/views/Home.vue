@@ -159,6 +159,9 @@ export default {
 <style lang="scss" scoped>
 .home {
     padding: 20px;
+    @media screen and (max-width: 767px) {
+        padding: 0;
+    }
     .pt-1 {
         padding-top: 20px;
     }
